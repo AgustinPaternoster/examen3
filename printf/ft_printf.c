@@ -21,23 +21,45 @@ int ft_putstr(char * str)
 
 
 
-int putnbr(int nb)
+int ft_putnbr(int nb,int base)
 {
-        
+	char number[12];
+	int i;
+	int result;
+	long nbl;
+
+	result = 0;
+	i = 0;
+	nbl = nb;
+	if (nbl < 0 )
+	{ 
+		if (write(1,"-",1) < 0)
+                	return (-1);
+		nbl *= -1;
+	}
+	while (nbl > 0) 
+	{
+		number[i] = hex[nbl % base];
+		nbl = nbl / base;
+		i++;
+	}
+	while ( --i >= 0 )
+	{
+		if (write(1,&number[i],1) < 0)
+			return (-1);
+		result++;
+	}
+	return (result);
 }
 
-int puthex(int nb)
-{
-    return (printf("%x", nb));
-}
 int p_fuctions(va_list arg, char c)
 {
     int result;
     result = 0;
     if (c == 'x')
-        result = puthex(va_arg(arg, int));
+        result = ft_putnbr(va_arg(arg, int),16);
     if (c == 'd')
-        result = putnbr(va_arg(arg,int));
+        result = ft_putnbr(va_arg(arg,int),10);
     if (c == 's')
         result = ft_putstr(va_arg(arg, char *));
     return (result);
@@ -73,6 +95,6 @@ int ft_printf(char *str, ...)
 int main(int arc, char **argv)
 {
     int i;
-    printf("%c",hex[15]);
+    ft_putnbr(-2147483648,10);
     return (0);
 }
