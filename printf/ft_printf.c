@@ -95,6 +95,7 @@ int ft_printf(char *str, ...)
 int main(int arc, char **argv)
 {
     int i;
-    ft_putnbr(-2147483648,10);
+    i = ft_printf("test %x, %d, %s\n",1234 , 1234 , "1234");
+    ft_printf("%d",i);
     return (0);
 }
