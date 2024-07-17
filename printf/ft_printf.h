@@ -5,6 +5,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 
+#define hex "0123456789abcdef"
 
 
 #endif
